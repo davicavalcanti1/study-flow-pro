@@ -25,34 +25,38 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | null>(null);
 
 const DB_ROLE_MAP: Record<string, UserRole> = {
-  manager: "manager",
+  ADMIN: "manager",
+  ASSESSOR: "assessor",
+  STUDENT: "aluno",
+  manager: "manager", // Fallbacks
   diretor: "diretor",
   assessor: "assessor",
   student: "aluno",
 };
 
 const ROLE_TO_DB: Record<UserRole, string> = {
-  manager: "manager",
-  diretor: "diretor",
-  assessor: "assessor",
-  aluno: "student",
+  manager: "ADMIN",
+  diretor: "ADMIN", // Mapping both to ADMIN for simplicity, or could create distinct DB roles
+  assessor: "ASSESSOR",
+  aluno: "STUDENT",
 };
 
 async function fetchAppUser(supaUser: User): Promise<AppUser | null> {
-  const { data: profile } = await supabase
+  const { data: profile, error } = await supabase
     .from("profiles")
-    .select("name, avatar_url")
-    .eq("user_id", supaUser.id)
+    .select("*")
+    .eq("id", supaUser.id)
     .single();
 
-  const { data: roleData } = await supabase
-    .from("user_roles")
-    .select("role")
-    .eq("user_id", supaUser.id)
-    .single();
+  if (error) {
+    console.error("Error fetching profile:", error);
+    return null;
+  }
 
-  const dbRole = roleData?.role as string | undefined;
-  const role: UserRole = DB_ROLE_MAP[dbRole || "student"] || "aluno";
+  // Map the DB role (e.g., 'STUDENT') to App role (e.g., 'aluno')
+  // cast profile.role as string to safely index
+  const dbRole = profile?.role as string;
+  const role: UserRole = DB_ROLE_MAP[dbRole] || "aluno";
 
   return {
     id: supaUser.id,
