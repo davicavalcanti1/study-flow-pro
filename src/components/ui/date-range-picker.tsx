@@ -39,11 +39,11 @@ export function DatePickerWithRange({
                         {date?.from ? (
                             date.to ? (
                                 <>
-                                    {format(date.from, "LDL", { locale: ptBR })} -{" "}
-                                    {format(date.to, "LDL", { locale: ptBR })}
+                                    {format(date.from, "dd 'de' MMM, yyyy", { locale: ptBR })} -{" "}
+                                    {format(date.to, "dd 'de' MMM, yyyy", { locale: ptBR })}
                                 </>
                             ) : (
-                                format(date.from, "LDL", { locale: ptBR })
+                                format(date.from, "dd 'de' MMM, yyyy", { locale: ptBR })
                             )
                         ) : (
                             <span>Selecione um período</span>
@@ -62,6 +62,6 @@ export function DatePickerWithRange({
                     />
                 </PopoverContent>
             </Popover>
-        </div>
+        </div >
     )
 }

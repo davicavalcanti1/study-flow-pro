@@ -72,7 +72,7 @@ export function TopNav() {
           {/* Logo */}
           <div className="flex items-center gap-2">
             <div className="h-10 w-auto flex items-center justify-center">
-              <img src="/logo.png" alt="Assessoria Motiva" className="h-full w-auto object-contain" />
+              <img src="/logo.svg" alt="Site Caio" className="h-full w-auto object-contain" />
             </div>
             {user && isStaff(user.role) && (
               <span className={`hidden sm:inline text-xs px-2 py-0.5 rounded-full font-medium ml-1 ${getRoleBadgeColor(user.role)}`}>
