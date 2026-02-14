@@ -1,0 +1,1 @@
+src/pages/AssessorDashboard.tsx(19,10): error TS2614: Module '"@/components/assessor/AssessorTopicManager"' has no exported member 'AssessorTopicManager'. Did you mean to use 'import AssessorTopicManager from "@/components/assessor/AssessorTopicManager"' instead?

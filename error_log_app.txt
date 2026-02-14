@@ -1,0 +1,5 @@
+src/App.tsx(10,24): error TS2307: Cannot find module './pages/SignupPage' or its corresponding type declarations.
+src/App.tsx(20,30): error TS2307: Cannot find module './pages/ManagerDashboard' or its corresponding type declarations.
+src/App.tsx(21,30): error TS2307: Cannot find module './pages/DiretorDashboard' or its corresponding type declarations.
+src/App.tsx(22,24): error TS2307: Cannot find module './pages/InvitePage' or its corresponding type declarations.
+src/pages/AssessorDashboard.tsx(19,38): error TS2307: Cannot find module '@/components/assessor/AssessorTopicManager' or its corresponding type declarations.
